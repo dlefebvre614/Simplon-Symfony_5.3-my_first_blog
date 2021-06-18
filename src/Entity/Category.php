@@ -31,6 +31,11 @@ class Category
      */
     private $slug;
 
+    public function __toString()
+    {
+        return $this->name;
+    }
+
     /**
      * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="categories")
      */

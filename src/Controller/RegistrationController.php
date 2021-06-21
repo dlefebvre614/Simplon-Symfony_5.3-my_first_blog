@@ -62,7 +62,7 @@ class RegistrationController extends AbstractController
 
         return $this->render('registration/register.html.twig', [
             'registrationForm' => $form->createView(),
-            'bg_image' => 'about-bg.jpg'
+            'bg_image' => 'login-bg.jpg'
         ]);
     }
 

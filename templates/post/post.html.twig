@@ -1,20 +1,31 @@
 {% extends 'clean.html.twig' %}
 
-{% block title %}{{ post.title }}{% endblock %}
+{% block title %}
+	{{ post.title }}
+{% endblock %}
+
+{% block bg %}
+	{{ post.image }}
+{% endblock %}
 
 {% block body %}
 
-        <!-- Post Content-->
-        <article class="mb-4">
-            <div class="container px-4 px-lg-5">
-                <div class="row gx-4 gx-lg-5 justify-content-center">
-                    <div class="col-md-10 col-lg-8 col-xl-7">
-                        <p>{{ post.content }}</p>
-                    </div>
-                </div>
-            </div>
-        </article>
+	<!-- Post Content-->
+	<article class="mb-4">
+		<div class="container px-4 px-lg-5">
+			<div class="row gx-4 gx-lg-5 justify-content-center">
+				<div class="col-md-10 col-lg-8 col-xl-7">
+					<p>{{ post.content | raw }}</p>
+					<p class="post-meta">Posted by
+						<a href="#">{{ post.user.email }}</a>
+						on
+						{{ post.createdAt | ago }}
+						Classé dans
+						{{ post.category.name }}
+					</p>
+				</div>
+
+			</div>
+		</div>
+	</article>
 {% endblock %}
-
-
-    

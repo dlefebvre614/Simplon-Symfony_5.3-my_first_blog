@@ -2,19 +2,28 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Repository\PostRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class TestController extends AbstractController
 {
     /**
      * @Route("/test", name="test")
      */
-    public function index(): Response
+    public function home(PostRepository $postRepository): Response
     {
-        return $this->render('test/index.html.twig', [
-            'controller_name' => 'TestController',
+        $posts = $postRepository->findOldPosts(10);
+        dd($posts);
+        return $this->render('post/posts.html.twig', [
+            'post' => [
+
+                'title' => 'La liste des articles',
+                'content' => 'Contenu par défaut',
+            ],
+            'bg_image' => 'home-bg.jpg',
+            'posts' => $posts,
         ]);
     }
 

@@ -14,7 +14,7 @@
 	<article class="mb-4">
 		<div class="container px-4 px-lg-5">
 			<div class="row gx-4 gx-lg-5 justify-content-center">
-				<div class="col-md-10 col-lg-8 col-xl-7">
+				<div class="col-md-12 col-lg-9 col-xl-10">
 					<p>{{ post.content | raw }}</p>
 					<p class="post-meta">Posted by
 						<a href="#">{{ post.user.email }}</a>
@@ -24,7 +24,8 @@
 						{{ post.category.name }}
 					</p>
 				</div>
-
+				<!-- sidebar -->
+				{{ include("shared/_sidebar.html.twig") }}
 			</div>
 		</div>
 	</article>

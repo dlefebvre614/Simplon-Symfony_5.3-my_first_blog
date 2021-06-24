@@ -15,17 +15,18 @@
 	{# {{ dump(posts) }} #}
 
 	<!-- Main Content-->
-		<div class="container px-4 px-lg-5"> {% for post in posts %}
-			<div class="row gx-4 gx-lg-5 justify-content-center">
-				<div
-					class="col-md-10 col-lg-8 col-xl-7">
+		<div class="container px-4 px-lg-5"> <div class="row gx-4 gx-lg-5 justify-content-center">
+
+			<div class="col-md-12 col-lg-9 col-xl-10">
+				{% for post in lastposts %}
 					<!-- Post preview -->
 					<div class="post-preview">
 						<a href="{{ path('post_view', {slug: post.slug}) }}">
 							<h2 class="post-title">{{ post.title }}</h2>
 							<img src="{{ post.image }}" alt="" style="width: 100%">
-							<p class="post-subtitle">{{ post.content | u.truncate(1500, '...') | raw }}</p>
 						</a>
+						<p class="post-subtitle">{{ post.content | u.truncate(1500, '...') | raw }}</p>
+
 						<p class="post-meta">Posted by
 							<a href="#">{{ post.user.email }}</a>
 							on
@@ -34,11 +35,15 @@
 							{{ post.category.name }}
 						</p>
 					</div>
-				</div>
-
+				{% endfor %}
 			</div>
-			<hr>
-		{% endfor %}
+
+			<!-- sidebar -->
+			{{ include("shared/_sidebar.html.twig") }}
+		</div>
+		<hr>
+
 	</div>
+
 
 {% endblock %}

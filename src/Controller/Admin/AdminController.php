@@ -1,11 +1,9 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Admin;
 
 use App\Entity\Post;
 use App\Form\PostType;
-use App\Entity\Category;
-use App\Form\CategoryType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -22,27 +20,14 @@ class AdminController extends AbstractController
             'controller_name' => 'AdminController',
         ]);
     }
-    /**
-     * @Route("/category/add", name="category_add")
+
+        /**
+     * @Route("/admin/test", name="admin_test")
      */
-    public function addCategory(Request $request): Response
+    public function test(): Response
     {
-        $category = new Category();
-        //dd($category);
-        $form = $this->createForm(CategoryType::class, $category);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            //dd($form);
-            //dd($category);
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($category);
-            $em->flush();
-            return $this->redirectToRoute('admin_home');
-        }
-
-        return $this->render('admin/category/add.html.twig', [
-            'form' => $form->createView(),
+        return $this->render('admin/test.html.twig', [
+            'controller_name' => 'AdminController',
         ]);
     }
 
@@ -62,6 +47,8 @@ class AdminController extends AbstractController
             $em = $this->getDoctrine()->getManager();
             $em->persist($post);
             $em->flush();
+            // @TODO Change the redirect on success and handle or remove the flash message in your templates
+            $this->addFlash('success', 'Votre catégorie à été ajoutée avec succès !');
             return $this->redirectToRoute('home');
         }
 

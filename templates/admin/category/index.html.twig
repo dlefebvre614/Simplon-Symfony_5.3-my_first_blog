@@ -1,0 +1,51 @@
+{% extends 'admin/sbadmin.html.twig' %}
+
+{% block title %}Gestion des catégories
+{% endblock %}
+
+{% block body %}
+	<main>
+		<div class="container-fluid px-4">
+			<h1 class="mt-4">Catégories</h1>
+			<ol class="breadcrumb mb-4">
+				<li class="breadcrumb-item active">Table Mysql</li>
+			</ol>
+			<a href="{{ path('admin_category_add') }}" class="btn btn-primary">Ajouter</a>
+			<div class="card-body">
+				<table id="datatablesSimple">
+					<thead>
+						<tr>
+							<th>Id</th>
+							<th>Parent</th>
+							<th>Nom</th>
+							<th>Slug</th>
+							<th>Actions</th>
+						</tr>
+					</thead>
+					<tfoot>
+						<tr>
+							<th>Id</th>
+							<th>Parent</th>
+							<th>Nom</th>
+							<th>Slug</th>
+							<th>Actions</th>
+						</tr>
+					</tfoot>
+					<tbody>
+						{% for category in categories %}
+							<tr>
+								<td>{{category.id}}</td>
+								<td>{{category.parent}}</td>
+								<td>{{category.name}}</td>
+								<td>{{category.slug}}</td>
+								<td>
+									<a href="{{ path('admin_category_update', {id: category.id}) }}" class="btn btn-primary btn-sm">Modifier</a>
+								</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</main>
+{% endblock %}

@@ -19,7 +19,7 @@ class CategoryType extends AbstractType
                 "label" => "Nom de la catégorie",
             ])
             //->add('slug')
-            //->add('parent') liste déroulante à prévoir
+            ->add('parent')
             ->add('Valider', SubmitType::class);
     }
 

@@ -6,7 +6,7 @@
 		<meta name="description" content=""/>
 		<meta name="author" content=""/>
 		<title>
-			{% block title %}'Clean Blog - Start Bootstrap Theme'
+			{% block title %}'my Blog - Clean Bootstrap Theme'
 			{% endblock %}
 		</title>
 		<link
@@ -21,7 +21,7 @@
 		<link
 		href="{{ asset('clean/css/styles.css') }}" rel="stylesheet"/>
 		{# Run `composer require symfony/webpack-encore-bundle`
-																				           and uncomment the following Encore helpers to start using Symfony UX #}
+																						           and uncomment the following Encore helpers to start using Symfony UX #}
 		{% block stylesheets_head %}
 			{#{{ encore_entry_link_tags('app') }}#}
 		{% endblock %}
@@ -34,7 +34,11 @@
 		<!-- Navigation-->
 		<nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
 			<div class="container px-4 px-lg-5">
-				<a class="navbar-brand" href="{{ path("home") }}">My Blog</a>
+				{% if not is_granted("ROLE_USER") %}
+					<a class="navbar-brand" href="{{ path("home") }}">My Blog</a>
+				{% else %}
+					<a class="navbar-brand" href="{{ path("admin_home") }}">My Admin Blog</a>
+				{% endif %}
 				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
 					Menu
 					<i class="fas fa-bars"></i>

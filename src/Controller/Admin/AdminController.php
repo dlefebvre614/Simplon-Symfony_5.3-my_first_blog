@@ -48,7 +48,7 @@ class AdminController extends AbstractController
             $em->persist($post);
             $em->flush();
             // @TODO Change the redirect on success and handle or remove the flash message in your templates
-            $this->addFlash('success', 'Votre catégorie à été ajoutée avec succès !');
+            $this->addFlash('success', 'Votre post a été ajoutée avec succès !');
             return $this->redirectToRoute('home');
         }
 
